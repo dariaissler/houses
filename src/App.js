@@ -28,22 +28,20 @@ function App() {
 
   const getCompanies = async () => {
     const token = localStorage.token
-    const response = await fetch("http://test-alpha.reestrdoma.ru/api/reestrdoma/companies/",
-    {
-        headers: {
-            "accept": "application/json",
-            "Authorization": `Bearer ${token}`
-        }}
-    )
+    const response = await fetch("http://test-alpha.reestrdoma.ru/api/reestrdoma/companies/", {
+      headers: {
+          "accept": "application/json",
+          "Authorization": `Bearer ${token}`
+      }
+    })
     const data = await response.json()
-        setData(data.data);
-} 
+    setData(data.data);
+  } 
 
 
   const getHouses = async (company_id) => {
     const token = localStorage.token
-    const response = await fetch(`http://test-alpha.reestrdoma.ru/api/reestrdoma/company/houses/${company_id}`, 
-    {
+    const response = await fetch(`http://test-alpha.reestrdoma.ru/api/reestrdoma/company/houses/${company_id}`, {
       headers: {
           "accept": "application/json",
           "Authorization": `Bearer ${token}`
@@ -54,12 +52,12 @@ function App() {
   }
 
   return (
-<>
- { !isAuth && <Auth login={login}/> }
- { isAuth && <List getCompanies={getCompanies}
-  data={data} houses={houses} getHouses={getHouses} /> 
- } 
-</>
+    <>
+      { !isAuth && <Auth login={login}/> }
+      { isAuth && <List getCompanies={getCompanies}
+        data={data} houses={houses} getHouses={getHouses} /> 
+      } 
+    </>
   )
 }
 
